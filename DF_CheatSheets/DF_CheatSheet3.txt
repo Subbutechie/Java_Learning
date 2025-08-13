@@ -1,0 +1,75 @@
+| Task            | Scala Example                                                            | Java Example                                                                                                |
+| --------------- | ------------------------------------------------------------------------ 
+1. Creating DataFrames / Datasets
+| ----------------------------------------------------------------------------------------------------------- |
+| From Collection | `val df = spark.createDataFrame(Seq((1,"A"),(2,"B"))).toDF("id","name")` | `Dataset<Row> df = spark.createDataFrame(Arrays.asList(new Tuple2<>													(1,"A"), new Tuple2<>(2,"B")), schema);` |
+| From CSV        | `val df = spark.read.option("header","true").csv("file.csv")`            | `Dataset<Row> df = spark.read().option("header","true").csv("file.csv");`                                   |
+| From JSON       | `val df = spark.read.json("file.json")`                                  | `Dataset<Row> df = spark.read().json("file.json");`                                                         |
+| From Parquet    | `val df = spark.read.parquet("file.parquet")`                            | `Dataset<Row> df = spark.read().parquet("file.parquet");`                                                   |
+
+2. Viewing Data
+
+| Task              | Scala                  | Java                    |
+| ----------------- | ---------------------- | ----------------------- |
+| Show rows         | `df.show()`            | `df.show();`            |
+| Show first n rows | `df.show(5)`           | `df.show(5);`           |
+| Print schema      | `df.printSchema()`     | `df.printSchema();`     |
+| Describe summary  | `df.describe().show()` | `df.describe().show();` |
+| Count rows        | `df.count()`           | `df.count();`           |
+
+3. Selecting & Filtering
+
+| Task             | Scala                    | Java                          |
+| ---------------- | ------------------------ | ----------------------------- |
+| Select columns   | `df.select("id","name")` | `df.select("id","name");`     |
+| Filter rows      | `df.filter($"id" > 1)`   | `df.filter(col("id").gt(1));` |
+| SQL-style filter | `df.where("id > 1")`     | `df.where("id > 1");`         |
+| Distinct         | `df.distinct()`          | `df.distinct();`              |
+
+4. Column Operations
+
+| Task          | Scala                                   | Java                                                 |
+| ------------- | --------------------------------------- | ---------------------------------------------------- |
+| Add column    | `df.withColumn("newCol", lit(10))`      | `df.withColumn("newCol", functions.lit(10));`        |
+| Drop column   | `df.drop("name")`                       | `df.drop("name");`                                   |
+| Rename column | `df.withColumnRenamed("old","new")`     | `df.withColumnRenamed("old","new");`                 |
+| Expressions   | `df.withColumn("double_id", $"id" * 2)` | `df.withColumn("double_id", col("id").multiply(2));` |
+
+5. Grouping & Aggregation
+
+| Task                | Scala                                          | Java                                            |
+| ------------------- | ---------------------------------------------- | ----------------------------------------------- |
+| Group & count       | `df.groupBy("name").count()`                   | `df.groupBy("name").count();`                   |
+| Group & sum         | `df.groupBy("name").sum("id")`                 | `df.groupBy("name").sum("id");`                 |
+| Multiple aggregates | `df.groupBy("name").agg(avg("id"), max("id"))` | `df.groupBy("name").agg(avg("id"), max("id"));` |
+
+6. Sorting
+
+| Task              | Scala                                 | Java                                               |
+| ----------------- | ------------------------------------- | -------------------------------------------------- |
+| Ascending         | `df.sort("id")`                       | `df.sort("id");`                                   |
+| Descending        | `df.sort($"id".desc)`                 | `df.sort(col("id").desc());`                       |
+| Order by multiple | `df.orderBy($"name".asc, $"id".desc)` | `df.orderBy(col("name").asc(), col("id").desc());` |
+
+7. Joins
+
+| Type       | Scala                               | Java                                                                          |
+| ---------- | ----------------------------------- | ----------------------------------------------------------------------------- |
+| Inner join | `df1.join(df2, "id")`               | `df1.join(df2, "id");`                                                        |
+| Left join  | `df1.join(df2, Seq("id"), "left")`  | `df1.join(df2, JavaConversions.asScalaBuffer(Arrays.asList("id")), "left");`  |
+| Right join | `df1.join(df2, Seq("id"), "right")` | `df1.join(df2, JavaConversions.asScalaBuffer(Arrays.asList("id")), "right");` |
+
+8. Saving Data
+
+| Task         | Scala                                         | Java                                             |
+| ------------ | --------------------------------------------- | ------------------------------------------------ |
+| Save CSV     | `df.write.option("header","true").csv("out")` | `df.write().option("header","true").csv("out");` |
+| Save Parquet | `df.write.parquet("out")`                     | `df.write().parquet("out");`                     |
+| Save JSON    | `df.write.json("out")`                        | `df.write().json("out");`                        |
+
+9. SQL with DataFrames
+
+| Task             | Scala                                           | Java                                             |
+| ---------------- | ----------------------------------------------- | ------------------------------------------------ |
+| Create temp view | `df.createOrReplaceTempView("table")`           | `df.createOrReplaceTempView("table");`           |
+| Query            | `spark.sql("SELECT * FROM table WHERE id > 1")` | `spark.sql("SELECT * FROM table WHERE id > 1");` |

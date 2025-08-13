@@ -1,0 +1,329 @@
+1. what are static blocks and static initalizers in Java ?
+a.Static Block:
+	A static block is a block of code that is executed when the class is loaded into memory, before any objects are created.
+	It’s used for initialization of static variables or performing setup operations. It runs only once when the class is first loaded.
+b.Static Initializers:
+	A static initializer refers to the code inside a static block.
+	It is specifically used for initializing static variables or executing code that only needs to run once for the class, not per instance.
+
+	Both are primarily used for performing class-level initialization.
+--------------------------------------------------------------------------------------------------------------
+
+2. How to call one constructor from the other constructor ?
+	In Java, you can call one constructor from another constructor using the this() keyword. This is known as constructor chaining.
+	Restrictions:
+	a. It must be the first statement in the constructor.
+	b. we should not use 2 this keywords.
+
+--------------------------------------------------------------------------------------------------
+3.  What is method overriding in java ?
+	Method Overriding in Java occurs when a subclass provides a specific implementation of a method that is already defined in its superclass.
+	It allows the subclass to change or enhance the behavior of the inherited method. 
+	The method in the subclass must have the same name, return type, and parameters as the method in the superclass.
+
+	Key Points:
+	Same method signature: The method in the subclass must match the method signature in the superclass (same name, return type, and parameters).
+	@Override annotation: It's not required but is commonly used to indicate that a method is overriding a superclass method.
+	Runtime Polymorphism: Method overriding is a key feature of runtime polymorphism in Java.
+
+--------------------------------------------------------------------------------------------------------------------------------------
+4. What is super keyword in java ?
+	The super keyword in Java is used to refer to the immediate superclass of the current object. It has several important uses:
+
+	Key Uses of super:
+	Accessing superclass methods: It allows you to call methods of the superclass that are overridden in the subclass.
+
+	Accessing superclass constructors: It can be used to call a constructor of the superclass. This must be the first statement in the subclass constructor.
+
+	Accessing superclass variables: It can be used to access fields of the superclass if they are not hidden by the subclass.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+5.  Difference between method overloading and method overriding in java ?
+	a. Method Overloading:
+	Definition: Method overloading occurs when multiple methods with the same name exist in the same class, but they differ in the number or type of parameters.
+	Resolution: Determined at compile-time (static polymorphism).
+	Return Type: Return type can be different, but it is not considered for overloading.
+	Purpose: It allows a class to perform different tasks with the same method name depending on the parameters.
+	It happens in the same class so no inheritence is involved.
+	
+
+	b.Method Overriding:
+	Definition: Method overriding occurs when a subclass provides a specific implementation of a method that is already defined in its superclass.
+	The method signature in the subclass must match the method in the superclass.
+	Resolution: Determined at runtime (dynamic polymorphism).
+	Return Type: The return type must be the same or a subtype (covariant return type) of the original method.
+	Purpose: It allows a subclass to provide its specific implementation of a method inherited from the superclass.
+	It happens between super class and subclass so inheritence is involved.
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+6. Difference between abstract class and interface ?
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+7. Why java is platform independent?
+	Java is considered platform-independent because of its "Write Once, Run Anywhere" (WORA) philosophy.
+	The most unique feature of java is platform independent. In any programming language source code is 
+	compiled in to executable code . This cannot be run across all platforms. When javac compiles a java 
+	program it generates an executable file called .class file.
+	class file contains byte codes. Byte codes are interpreted only by JVM’s . Since these JVM’s are made 
+	available across all platforms by Sun Microsystems, we can execute this byte code in any platform. Byte 
+	code generated in windows environment can also be executed in linux environment. This makes java 
+	platform independent
+	
+--------------------------------------------------------------------------------------------------------------------------------------------
+8. What is JIT compiler ?
+	JIT compiler stands for Just in time compiler. JIT compiler compiles byte code in to executable code . 
+	JIT a part of JVM .JIT cannot convert complete java program in to executable code it converts as and 
+	when it is needed during execution.	
+-----------------------------------------------------------------------------------------------------------------------------------------
+9. Difference between this() and super() in java ?
+	a.this():
+	Purpose: Used to call a constructor of the current class from another constructor in the same class (i.e., constructor chaining within the same class).
+
+	Usage: It must be the first statement in the constructor.
+
+	Common Scenario: To invoke another constructor in the same class to avoid code duplication.
+	
+	b.super():
+	Purpose: Used to call a constructor of the superclass (parent class). This is helpful in constructor chaining between subclasses and superclass.
+
+	Usage: It must be the first statement in the constructor of the subclass.
+
+	Common Scenario: To invoke the constructor of the superclass, especially when the superclass doesn't have a no-argument constructor or needs initialization.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+10. What is a class ?
+	Classes are fundamental or basic unit in Object Oriented Programming .A class is kind of blueprint or 
+	template for objects. Class defines variables, methods. A class tells what type of objects we are creating. 
+	For example take Department class tells us we can create department type objects. We can create any 
+	number of department objects.
+	All programming constructs in java reside in class. When JVM starts running it first looks for the class 
+	when we compile. Every Java application must have atleast one class and one main method.
+	Class starts with class keyword. A class definition must be saved in class file that has same as class name. 
+	File name must end with .java extension.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+11. What is an object?
+	An object in Java is an instance of a class. It represents a real-world entity and has both state (attributes) and behavior (methods).
+	Objects are created based on the blueprint defined by the class, and each object can have its own unique data while sharing the same methods from the class.
+
+	Key Points About an Object:
+	State (Attributes/Fields):
+	The state of an object is represented by the values of its attributes (also called fields or properties).
+	Each object can have different values for its attributes.
+
+	Behavior (Methods):
+	The behavior of an object is defined by the methods of the class. These methods describe the actions that an object can perform.
+
+	Identity:
+	Every object has a unique identity, meaning even if two objects have the same state, they are still considered different objects. This identity is usually handled by the JVM.
+
+	Creation:
+	An object is created using the new keyword followed by a constructor.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+12. What is encapsulation ?
+	The process of wrapping or putting up of data in to a single unit class and keeps data safe from misuse is called encapsulation .
+	Through encapsulation we can hide and protect the data stored in java objects.Java supports 
+	encapsulation through access control. There are four access control modifiers in java public , private ,protected and default level.
+	For example take a car class , In car we have many parts which is not required for driver to know what all 
+	it consists inside. He is required to know only about how to start and stop the car. So we can expose 
+	what all are required and hide the rest by using encapsulation.
+
+	Key Features of Encapsulation:
+	Private Fields:
+	The fields (or properties) of a class are typically declared as private. This prevents direct access to these fields from outside the class,
+	 ensuring that the object’s data is not modified arbitrarily.
+
+	Public Methods (Accessors and Mutators):
+	To allow controlled access to the private fields, we provide public methods. These methods can be:
+
+	Getter (Accessor): A method that retrieves the value of a private field.
+	Setter (Mutator): A method that sets the value of a private field.
+	Control Over Data:
+	Encapsulation allows the class to control how its internal state is accessed or modified. 
+	For example, you can validate data before setting a field’s value, ensuring that the object’s state remains valid.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13.  Explain about main() method in java ?
+	The main() method in Java is the entry point for any Java application. 
+	When you run a Java program, the Java Virtual Machine (JVM) looks for the main() method to start the execution of the program. 
+	It serves as the starting point where the program begins its execution.
+
+	Components of the main() Method:
+	public:
+	This is an access modifier. It means that the main() method is accessible from anywhere, which is essential because the JVM needs to invoke this method to start the program. It needs to be accessible to the JVM at runtime.
+	static:
+	The static keyword means that the main() method can be called without creating an instance of the class. Since the JVM doesn't create an object of the class before calling main(), it must be static.
+	void:
+
+	This indicates that the main() method does not return any value. The main() method is the starting point, and its job is to initiate the program, not return a value to the JVM.
+	main:
+	This is the name of the method. The JVM looks for a method named main to begin program execution.
+	String[] args:
+	This parameter is an array of strings that allows the program to accept command-line arguments when the program is run. 
+	These arguments are passed as an array of strings, where each string corresponds to an argument passed to the program when it is executed.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+14. What is constructor in java ?
+	A constructor in Java is a special type of method that is used to initialize objects of a class. 
+	It is called automatically when an object of the class is created. 
+	A constructor has the same name as the class and does not have a return type, not even void.
+	Key Points About Constructors:
+	Initialization:
+	A constructor is used to initialize the newly created object with default or specified values.
+
+	Constructor Name:
+	The name of the constructor must match the name of the class. This is what distinguishes it from regular methods.
+
+	No Return Type:
+	Constructors do not have a return type, not even void. If a method has a return type, it’s a regular method, not a constructor.
+
+	Automatic Call:
+	The constructor is automatically called when an object is instantiated using the new keyword.
+
+	Types of Constructors:
+	There are two main types of constructors in Java:
+	Default Constructor: A constructor provided by the Java compiler when no constructor is defined in the class. It initializes the object with default values (e.g., 0 for integers, null for objects).
+	Parameterized Constructor: A constructor that allows you to initialize an object with specific values provided at the time of object creation.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+15. Difference between ‘>>’ and ‘>>>’ operators in java?
+	1. >> (Signed Right Shift Operator):
+	Operation: The >> operator shifts the bits to the right and preserves the sign of the number. 
+	This means that the leftmost bits (most significant bits) are filled with the sign bit (i.e., the leftmost bit of the original number).
+
+	For positive numbers, >> shifts the bits to the right and fills the new leftmost bits with 0.
+	For negative numbers, >> shifts the bits to the right and fills the new leftmost bits with 1 to preserve the negative sign.
+	Behavior:
+	The leftmost bit, or sign bit, is preserved to ensure the number stays positive or negative.
+	
+	2. >>> (Unsigned Right Shift Operator):
+	Operation: The >>> operator also shifts the bits to the right, but it does not preserve the sign. 
+	Instead, it fills the leftmost bits with 0, regardless of whether the number is positive or negative. This is an unsigned right shift.
+
+	Behavior:
+	The sign bit is ignored, and the new leftmost bits are always set to 0.
+	This is useful when you need to perform an unsigned right shift on both positive and negative numbers.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+16. what is the scope of access modifiers?
+	Quick Trick to Remember the Scope of Access Modifiers:
+	Think of the following mnemonic:
+
+	"Public is everywhere,"
+	"Default is inside the door (package),"
+	"Protected is for your family (subclasses and same package),"
+	"Private is personal (only within the class)."
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+17. What is final access modifier in java?
+
+	Trick to Remember:
+	final variable: "Once set, cannot be unset" (immutable value).
+	final method: "No overriding allowed" (cannot change its behavior in subclasses).
+	final class: "No subclassing allowed" (cannot inherit from it).
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+18. Explain the difference between == and equals method?
+	1. == (Reference Equality)
+	Purpose: The == operator is used to compare the references (memory addresses) of two objects, not their actual contents.
+	2. .equals():
+	Purpose: The .equals() method is used to compare the contents of two objects. 
+		It is defined in the Object class, and many classes (like String, List, etc.) override this method to compare their content.
+
+	NOTE: The default equals() method in the Object class behaves similarly to ==, i.e., it compares the memory addresses of objects. 
+	However, many classes like String, ArrayList, etc., override .equals() to compare their contents.
+
+	Example of overriding .equals(): When you create a custom class, 
+	you may need to override the .equals() method to ensure it compares the contents of your objects (such as checking if two Person objects have the same name and age).
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+19. 
+
+First, the Spring IOC(Inversion of Control) container is activated by the instance of ApplicationContext in the main method.
+ Then, Spring scans the package for classes annotated with @Component, creates those objects (beans), and checks their constructors. 
+If a constructor needs dependencies (like Engine in Car),
+ Spring automatically finds or creates those dependencies and injects them into the constructor, effectively wiring everything together.
+
+But with spring boot using @SpringBootApplication
+SpringApplication.run() is the one that:
+
+	*Boots up the Spring Boot environment
+
+	*Automatically creates the ApplicationContext
+
+	*Scans your project for @Component, @Service, @Repository, @Configuration, etc.
+
+	*Instantiates and wires your beans
+
+	*Starts the embedded server (if it's a web app)
+
+
+##what happens inside SpringApplication.run(Myapp.class, args);
+1. Create a SpringApplication instance
+Sets up defaults (like type of application: servlet, reactive, etc.)
+
+2. Detect environment & load properties
+From application.properties or application.yml
+
+3. Create the ApplicationContext
+It chooses the appropriate context type (like AnnotationConfigServletWebServerApplicationContext for web apps)
+
+This is where Spring scans your beans and manages them
+
+4. Run Bean Scanning & Instantiation
+Same as in core Spring: @ComponentScan kicks in (enabled by @SpringBootApplication)
+
+Finds and registers all beans
+
+Performs dependency injection (like injecting Engine into Car)
+
+5. Run Lifecycle Hooks
+@PostConstruct, CommandLineRunner, etc.
+
+6. Start Embedded Server (if it’s a web app)
+
+
+------------------------------------------------------------------------------------------
+
+##Bean definition
+@component helps to automatically identify a class and create it's bean. It is applied on class level.
+@bean with @Configuration is used tp manually tell spring to create a bean instance. @bean is applied on a method which return the bean instance need to be created.
+@Configuration is on the applied on the class
+
+Both ways are used simultaneously to create beans.
+
+3 types of Dependency Injection:
+- Constructor Injection
+- Setter Injection
+- Field Injection(Directly using @Autowired on the name of the class)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+20. Explain the Java Memory Model and how it impacts multithreading.
+
+In a multithreaded environment, each thread may cache variables locally. Without a memory model, one thread might not see the latest value written by another, 
+leading to visibility issues.
+
+The JMM introduces the concept of happens-before relationships. If one action happens-before another, then the first is visible and ordered before the second.
+
+For example, synchronizing on the same object, using volatile, or using constructs like CountDownLatch all establish happens-before relationships."
+
+Things to mention:
+Without the JMM, threads could see stale or inconsistent data.
+
+volatile ensures visibility, but not atomicity.
+
+Synchronization ensures both visibility and ordering.
+
+Reordering of instructions is allowed by the compiler and CPU unless happens-before is enforced.
+
+Follow-up question:
+Can you give a real-world example where using volatile is necessary, but synchronized might be overkill?"
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+

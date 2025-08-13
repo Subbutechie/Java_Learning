@@ -1,0 +1,33 @@
+| **Category**              | **Operation**                      | **Syntax Example**                                                    |
+| ------------------------- | ---------------------------------- | --------------------------------------------------------------------- |
+| **Creating DataFrame**    | From collection                    | `df = spark.createDataFrame([(1,"A"), (2,"B")], ["id","name"])`       |
+|                           | From CSV                           | `df = spark.read.csv("path/file.csv", header=True, inferSchema=True)` |
+|                           | From JSON                          | `df = spark.read.json("path/file.json")`                              |
+|                           | From Parquet                       | `df = spark.read.parquet("path/file.parquet")`                        |
+| **Viewing Data**          | Show first rows                    | `df.show(5)`                                                          |
+|                           | Show schema                        | `df.printSchema()`                                                    |
+|                           | Get columns                        | `df.columns`                                                          |
+|                           | Describe statistics                | `df.describe().show()`                                                |
+| **Selecting & Filtering** | Select columns                     | `df.select("col1", "col2").show()`                                    |
+|                           | Filter rows                        | `df.filter(df.col1 > 10).show()`                                      |
+|                           | Multiple conditions                | `df.filter((df.col1 > 10) & (df.col2 == "A")).show()`                 |
+|                           | SQL-style query                    | `spark.sql("SELECT col1 FROM table WHERE col2 = 'A'")`                |
+| **Adding & Renaming**     | Add column                         | `df.withColumn("newCol", df.col1 + 10)`                               |
+|                           | Rename column                      | `df.withColumnRenamed("old", "new")`                                  |
+| **Aggregations**          | Group by + count                   | `df.groupBy("col1").count().show()`                                   |
+|                           | Sum                                | `df.groupBy("col1").sum("col2").show()`                               |
+|                           | Average                            | `df.groupBy("col1").avg("col2").show()`                               |
+| **Sorting**               | Ascending                          | `df.orderBy("col1").show()`                                           |
+|                           | Descending                         | `df.orderBy(df.col1.desc()).show()`                                   |
+| **Joins**                 | Inner join                         | `df1.join(df2, "id", "inner")`                                        |
+|                           | Left join                          | `df1.join(df2, "id", "left")`                                         |
+|                           | Right join                         | `df1.join(df2, "id", "right")`                                        |
+| **Null Handling**         | Drop nulls                         | `df.na.drop()`                                                        |
+|                           | Fill nulls                         | `df.na.fill(0)`                                                       |
+|                           | Replace values                     | `df.na.replace("?", None)`                                            |
+| **Saving Data**           | To CSV                             | `df.write.csv("path/output", header=True)`                            |
+|                           | To JSON                            | `df.write.json("path/output")`                                        |
+|                           | To Parquet                         | `df.write.parquet("path/output")`                                     |
+| **Dataset Specific**      | Convert DF to Dataset (Scala/Java) | `case class Person(name: String, age: Int); val ds = df.as[Person]`   |
+| **Conversions**           | DF to RDD                          | `rdd = df.rdd`                                                        |
+|                           | RDD to DF                          | `df = rdd.toDF()`                                                     |

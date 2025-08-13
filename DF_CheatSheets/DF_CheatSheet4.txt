@@ -1,0 +1,43 @@
+| **Category**                                                        | **Command / Code**                                         | **Description**              |
+| ------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------- |
+| **Start Spark**                                                     | `spark-shell`                                              | Launch Spark shell in Scala  |
+|                                                                     | `pyspark`                                                  | Launch Spark shell in Python |
+|                                                                     | `spark-submit app.py`                                      | Submit Spark job             |
+| **Create SparkSession**                                             | \`\`\`python from pyspark.sql import SparkSession          |                              |
+| spark = SparkSession.builder.appName("AppName").getOrCreate()\`\`\` | Create Spark session in PySpark                            |                              |
+| **Read Data**                                                       | `spark.read.csv("file.csv", header=True)`                  | Read CSV file                |
+|                                                                     | `spark.read.json("file.json")`                             | Read JSON file               |
+|                                                                     | `spark.read.parquet("file.parquet")`                       | Read Parquet file            |
+| **Show Data**                                                       | `df.show()`                                                | Display DataFrame            |
+|                                                                     | `df.show(5)`                                               | Show first 5 rows            |
+| **Schema & Info**                                                   | `df.printSchema()`                                         | Show schema                  |
+|                                                                     | `df.describe().show()`                                     | Summary statistics           |
+| **Select & Filter**                                                 | `df.select("col1", "col2")`                                | Select columns               |
+|                                                                     | `df.filter(df.col1 > 10)`                                  | Filter rows                  |
+|                                                                     | `df.where("col1 > 10")`                                    | SQL-like filter              |
+| **Aggregations**                                                    | `df.groupBy("col").count()`                                | Group by & count             |
+|                                                                     | `df.groupBy("col").agg({"col2": "avg"})`                   | Group by & aggregate         |
+| **Sorting**                                                         | `df.orderBy("col1")`                                       | Sort ascending               |
+|                                                                     | `df.orderBy(df.col1.desc())`                               | Sort descending              |
+| **Add/Modify Columns**                                              | `df.withColumn("newCol", df.col1 * 2)`                     | Add new column               |
+|                                                                     | `df.withColumnRenamed("old", "new")`                       | Rename column                |
+| **Drop Columns**                                                    | `df.drop("colName")`                                       | Drop column                  |
+| **Joins**                                                           | `df1.join(df2, "id")`                                      | Inner join                   |
+|                                                                     | `df1.join(df2, "id", "left")`                              | Left join                    |
+| **SQL Queries**                                                     | `spark.sql("SELECT * FROM table")`                         | Run SQL query                |
+|                                                                     | `df.createOrReplaceTempView("table")`                      | Create temp view             |
+| **Save Data**                                                       | `df.write.csv("out.csv")`                                  | Save as CSV                  |
+|                                                                     | `df.write.parquet("out.parquet")`                          | Save as Parquet              |
+| **Caching**                                                         | `df.cache()`                                               | Cache DataFrame in memory    |
+|                                                                     | `df.unpersist()`                                           | Remove from cache            |
+| **Actions**                                                         | `df.count()`                                               | Count rows                   |
+|                                                                     | `df.collect()`                                             | Collect all rows to driver   |
+|                                                                     | `df.first()`                                               | First row                    |
+|                                                                     | `df.take(5)`                                               | First 5 rows                 |
+| **Transformations**                                                 | `df.selectExpr("col1 as c1", "col2*2 as c2")`              | SQL expressions              |
+|                                                                     | `rdd.map(lambda x: x*2)`                                   | Map on RDD                   |
+|                                                                     | `rdd.filter(lambda x: x>10)`                               | Filter RDD                   |
+| **RDD Conversion**                                                  | `df.rdd`                                                   | DataFrame to RDD             |
+|                                                                     | `spark.createDataFrame(rdd)`                               | RDD to DataFrame             |
+| **Machine Learning**                                                | `from pyspark.ml.feature import VectorAssembler`           | ML feature assembler         |
+|                                                                     | `from pyspark.ml.classification import LogisticRegression` | ML algorithm                 |

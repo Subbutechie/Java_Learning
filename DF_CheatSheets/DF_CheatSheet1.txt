@@ -1,0 +1,42 @@
+
+
+| **Category**                        | **Command**                                             | **Description**                |
+| ----------------------------------- | ------------------------------------------------------- | ------------------------------ |
+| **Create DataFrame**                | `spark.read.csv("path", header=True, inferSchema=True)` | Read CSV file                  |
+|                                     | `spark.read.json("path")`                               | Read JSON file                 |
+|                                     | `spark.read.parquet("path")`                            | Read Parquet file              |
+|                                     | `spark.createDataFrame(data, schema)`                   | From Python list/RDD           |
+| **Show Data**                       | `df.show()`                                             | Display rows                   |
+|                                     | `df.show(5)`                                            | Show first 5 rows              |
+|                                     | `df.printSchema()`                                      | Print schema                   |
+| **Schema & Columns**                | `df.columns`                                            | List of columns                |
+|                                     | `df.dtypes`                                             | Column names + types           |
+|                                     | `df.select("col1", "col2")`                             | Select columns                 |
+|                                     | `df.withColumnRenamed("old", "new")`                    | Rename column                  |
+| **Filter & Where**                  | `df.filter(df.age > 21)`                                | Filter rows                    |
+|                                     | `df.where("age > 21")`                                  | SQL-style filter               |
+|                                     | `df.filter((df.age > 21) & (df.salary < 50000))`        | Multiple conditions            |
+| **Sorting**                         | `df.orderBy("col")`                                     | Sort ascending                 |
+|                                     | `df.orderBy(df.col.desc())`                             | Sort descending                |
+| **Aggregation**                     | `df.groupBy("dept").count()`                            | Count per group                |
+|                                     | `df.groupBy("dept").agg(avg("salary"), max("salary"))`  | Multiple aggregates            |
+|                                     | `df.agg({"salary": "avg"})`                             | Aggregate without groupBy      |
+| **Joins**                           | `df1.join(df2, "id")`                                   | Inner join                     |
+|                                     | `df1.join(df2, "id", "left")`                           | Left join                      |
+|                                     | `df1.join(df2, ["id", "dept"], "outer")`                | Outer join on multiple columns |
+| **Add/Modify Columns**              | `df.withColumn("newCol", df.salary * 0.1)`              | Add calculated column          |
+|                                     | `df.withColumn("age2", col("age") + 2)`                 | Add using `col()`              |
+| **Drop Columns**                    | `df.drop("colName")`                                    | Drop a column                  |
+| **Distinct & Duplicate Handling**   | `df.distinct()`                                         | Remove duplicates              |
+|                                     | `df.dropDuplicates(["col1", "col2"])`                   | Drop dupes on selected cols    |
+| **Null Handling**                   | `df.na.drop()`                                          | Drop rows with nulls           |
+|                                     | `df.na.fill(0)`                                         | Replace nulls with value       |
+|                                     | `df.na.fill({"col1": 0, "col2": "missing"})`            | Fill per column                |
+| **SQL Queries**                     | `df.createOrReplaceTempView("myTable")`                 | Register as table              |
+|                                     | `spark.sql("SELECT * FROM myTable WHERE age > 21")`     | Run SQL query                  |
+| **Save Data**                       | `df.write.csv("path")`                                  | Save as CSV                    |
+|                                     | `df.write.json("path")`                                 | Save as JSON                   |
+|                                     | `df.write.parquet("path")`                              | Save as Parquet                |
+| **Convert to Dataset (Scala/Java)** | `df.as[CaseClass]`                                      | Type-safe Dataset              |
+| **Collect Data**                    | `df.collect()`                                          | Collect all rows to driver     |
+|                                     | `df.take(5)`                                            | First 5 rows                   |
