@@ -93,6 +93,18 @@ public class ArrayReversal {
 		
 		System.out.println(Arrays.toString(reversedArray));
 	}
+
+	//reverse without sorting
+	int[] numbers = {1, 2, 3, 4, 5};
+int[] reversed = Arrays.stream(numbers)
+                       .boxed()
+                       .collect(Collectors.collectingAndThen(Collectors.toList(), list -> {
+                           Collections.reverse(list);
+                           return list.stream();
+                       }))
+                       .mapToInt(Integer::intValue)
+                       .toArray();
+System.out.println(Arrays.toString(reversed));
 	
 	//Reversing the array using streams
 	static void reverseUsingStreams(int[] arr) {
