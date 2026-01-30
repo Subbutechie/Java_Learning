@@ -8,7 +8,43 @@ public class frequencyOfCharacters {
 		String str = "SubbaReddy";
 		frequencyOfCharacters(str);
 		//countCharacters(str);
+		 findFreq("suBb=!u");
 	}
+
+
+//This method converts the string to lowercase and ignores special characters
+	    public static void findFreq(String str){
+        int[] freq = new int[26];
+        boolean[] seen = new boolean[26];
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i = 0; i < str.length(); i++){
+            //lowercase conversion
+            char c = str.charAt(i);
+            if(c >= 'A' && c <= 'Z'){
+                c = (char)(c - 'Z'+'z');
+            }
+            //skipping symbols etc
+            //Anyway we are converting upper to lowercase, anything out of the lowercase range is not relevant 
+            else if(c <'a' || c >'z'){
+                continue;
+            }
+            
+            int idx = c -'a';
+            if(!seen[idx]){
+                seen[idx] = true;
+                sb.append(c);
+            }
+            freq[idx]++;
+        }
+        
+        for(int j = 0 ; j < sb.length(); j++){
+            char c = sb.charAt(j);
+            int idx = c  -'a';
+            System.out.println(c + " : " + freq[idx]);
+        }
+        
+    }
 
 	private static void countCharacters(String str) {
 		
